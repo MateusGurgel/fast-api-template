@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from schematics.user_schema import CreateUserSchema
+from schemas.user_schema import CreateUserSchema
 from models.user import User
 from services.encryption_service import get_password_hash
 

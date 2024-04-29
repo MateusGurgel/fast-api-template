@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from dependencies import current_user, database
 from services import authentication_service
-from schematics.token_schema import Token
+from schemas.token_schema import Token
 
 
 auth_router = APIRouter()

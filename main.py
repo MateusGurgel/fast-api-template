@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from router.user_routes import user_router
 from router.auth_routes import auth_router
@@ -20,7 +21,6 @@ app = FastAPI(
 
 # CORS
 
-
 origins_string = os.getenv("ALLOWED_HOSTS")
 origins = origins_string.split(",")
 
@@ -38,3 +38,6 @@ app.add_middleware(
 
 app.include_router(user_router)
 app.include_router(auth_router)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

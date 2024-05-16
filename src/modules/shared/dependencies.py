@@ -2,10 +2,10 @@ from fastapi import Depends
 from typing_extensions import Annotated
 from sqlalchemy.orm import Session
 
-from database import get_db
-from models.user import User
-from repositories import user_repository
-from services.authentication_service import try_get_user_username_from_token
+from src.databases.main.database import get_db
+from src.modules.user.user import User
+from src.modules.user import user_repository
+from src.modules.authentication.authentication_service import try_get_user_username_from_token
 
 from fastapi.security import OAuth2PasswordBearer
 

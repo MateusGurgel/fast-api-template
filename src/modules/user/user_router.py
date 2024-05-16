@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from schemas.user_schema import CreateUserSchema, UserListSchema
-from services import user_service
-from dependencies import current_user
-from dependencies import current_user, database
+from src.modules.user.user_schemas import CreateUserSchema, UserListSchema
+from src.modules.user import user_service
+from src.modules.shared.dependencies import current_user
+from src.modules.shared.dependencies import current_user, database
 
 
 user_router = APIRouter(prefix=("/users"), tags=["user"])

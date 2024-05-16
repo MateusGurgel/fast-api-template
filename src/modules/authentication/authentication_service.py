@@ -1,8 +1,8 @@
 from exceptions.invalid_token_exception import invalid_token_exception
 from exceptions.credential_exception import credentials_exception
 from datetime import datetime, timedelta, timezone
-from services.encryption_service import verify_password
-from repositories import user_repository
+from src.utils.encryption import verify_password
+from src.modules.user import user_repository
 from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 from typing import Union

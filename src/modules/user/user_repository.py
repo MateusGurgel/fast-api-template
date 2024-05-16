@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from schemas.user_schema import CreateUserSchema
-from models.user import User
-from services.encryption_service import get_password_hash
+from src.modules.user.user_schemas import CreateUserSchema
+from src.modules.user.user import User
+from src.utils.encryption import get_password_hash
 
 
 def get_user_by_id(user_id: int, db: Session):

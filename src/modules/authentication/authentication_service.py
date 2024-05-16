@@ -1,5 +1,5 @@
-from exceptions.invalid_token_exception import invalid_token_exception
-from exceptions.credential_exception import credentials_exception
+from src.exceptions.invalid_token_exception import invalid_token_exception
+from src.exceptions.credential_exception import credentials_exception
 from datetime import datetime, timedelta, timezone
 from src.utils.encryption import verify_password
 from src.modules.user import user_repository

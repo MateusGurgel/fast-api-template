@@ -39,7 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#app.add_middleware(BaseHTTPMiddleware, dispatch=rate_limit_middleware)
+app.add_middleware(BaseHTTPMiddleware, dispatch=rate_limit_middleware)
 app.add_middleware(BaseHTTPMiddleware, dispatch=error_handler_middleware)
 
 

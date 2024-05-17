@@ -1,4 +1,4 @@
-import os
+from decouple import config, Csv
 import uvicorn
 from fastapi import FastAPI
 from src.middlewares.error_handler import error_handler_middleware
@@ -7,7 +7,7 @@ from src.exceptions.http_base_exception.http_exception_handler import http_excep
 from src.modules.user.user_router import user_router
 from src.modules.authentication.authentication_router import auth_router
 from fastapi.middleware.cors import CORSMiddleware
-from middlewares.rate_limiter import rate_limiter_middleware
+from src.middlewares.rate_limiter import rate_limiter_middleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 description = """
@@ -28,12 +28,10 @@ app = FastAPI(
 app.add_exception_handler(HttpException, http_exception_handler)
 
 # Including middlewares
-
-cors_origins_string = os.getenv("ALLOWED_HOSTS")
-cors_origins = cors_origins_string.split(",")
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=ALLOWED_HOSTS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

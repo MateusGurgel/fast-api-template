@@ -1,8 +1,8 @@
 from passlib.context import CryptContext
-import os
+from decouple import config
 
 
-SALT = os.getenv("SALT")
+SALT = config("SALT")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def verify_password(plain_password, hashed_password):

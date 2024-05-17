@@ -7,12 +7,12 @@ from src.modules.user import user_repository
 from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 from typing import Union
-import os
+from decouple import config
 
 
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
-ACCESS_TOKEN_SECRET_KEY = os.getenv("ACCESS_TOKEN_SECRET_KEY")
-ACCESS_TOKEN_ENCRYPTION_ALGORITHM = os.getenv("ACCESS_TOKEN_ENCRYPTION_ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = config("ACCESS_TOKEN_EXPIRE_MINUTES", cast=int)
+ACCESS_TOKEN_SECRET_KEY = config("ACCESS_TOKEN_SECRET_KEY")
+ACCESS_TOKEN_ENCRYPTION_ALGORITHM = config("ACCESS_TOKEN_ENCRYPTION_ALGORITHM")
 
 
 def authenticate(username: str, password, db: Session) -> str:

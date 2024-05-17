@@ -7,7 +7,7 @@ from src.exceptions.http_base_exception.http_exception_handler import http_excep
 from src.modules.user.user_router import user_router
 from src.modules.authentication.authentication_router import auth_router
 from fastapi.middleware.cors import CORSMiddleware
-from src.middlewares.rate_limit import rate_limit_middleware
+from middlewares.rate_limiter import rate_limiter_middleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 description = """
@@ -39,7 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_middleware(BaseHTTPMiddleware, dispatch=rate_limit_middleware)
+app.add_middleware(BaseHTTPMiddleware, dispatch=rate_limiter_middleware)
 app.add_middleware(BaseHTTPMiddleware, dispatch=error_handler_middleware)
 
 

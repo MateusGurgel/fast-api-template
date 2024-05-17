@@ -10,7 +10,7 @@ RATE_LIMIT_RESET_TIME_IN_SECONDS = config("RATE_LIMIT_RESET_TIME_IN_SECONDS", ca
 RATE_LIMIT_REQUEST_COUNT_KEY = config("RATE_LIMIT_REQUEST_COUNT_KEY")
 RATE_LIMIT_FIRST_REQUEST_TIME_KEY = config("RATE_LIMIT_FIRST_REQUEST_TIME_KEY")
 
-async def rate_limit_middleware(request: Request, call_next):
+async def rate_limiter_middleware(request: Request, call_next):
 
     client_ip = get_client_ip(request)
 

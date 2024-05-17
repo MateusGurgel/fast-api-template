@@ -2,8 +2,7 @@
 from fastapi import HTTPException, status
 
 
-invalid_token_exception = HTTPException(
-    status_code=status.HTTP_401_UNAUTHORIZED,
-    detail="Could not validate token",
-    headers={"WWW-Authenticate": "Bearer"},
-)
+from src.exceptions.http_base_exception.http_exception import HttpException
+class InvalidTokenException(HttpException):
+    def __init__(self):
+        super().__init__(401, "Could not validate token")

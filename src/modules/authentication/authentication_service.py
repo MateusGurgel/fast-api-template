@@ -1,5 +1,6 @@
-from src.exceptions.invalid_token_exception import invalid_token_exception
-from src.exceptions.credential_exception import credentials_exception
+from src.exceptions.http_base_exception.http_exception import HttpException
+from src.exceptions.invalid_token_exception import InvalidTokenException
+from src.exceptions.credential_exception import credentialsException
 from datetime import datetime, timedelta, timezone
 from src.utils.encryption import verify_password
 from src.modules.user import user_repository
@@ -15,9 +16,9 @@ ACCESS_TOKEN_ENCRYPTION_ALGORITHM = os.getenv("ACCESS_TOKEN_ENCRYPTION_ALGORITHM
 
 
 def authenticate(username: str, password, db: Session) -> str:
-
+    
     if not check_credentials(username, password, db):
-        raise credentials_exception
+        raise credentialsException
 
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     token = create_access_token({"sub": username}, access_token_expires)
@@ -29,7 +30,7 @@ def try_get_user_username_from_token(token: str) -> str:
     try:
         return get_user_username_from_token(token)
     except JWTError:
-        raise invalid_token_exception
+        raise InvalidTokenException
 
 
 def get_user_username_from_token(token: str) -> str:

@@ -20,8 +20,8 @@ app = FastAPI(
     summary="That is my favorite template.",
     version="0.0.1",
     terms_of_service="http://example.com/terms/",
+    openapi_url=config("DOCS_URL"),
 )
-
 
 # Including Erro Handlers
 

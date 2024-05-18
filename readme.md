@@ -59,3 +59,8 @@ You can start the template in two ways:
    ```
 
 Now you're ready to start working with the project locally 😁.
+
+
+## TODO
+
+Use [SQLmodel](https://sqlmodel.tiangolo.com/) instead of sqlAlchemy

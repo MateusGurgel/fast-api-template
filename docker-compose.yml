@@ -1,6 +1,13 @@
 version: '3.8'
 
 services:
+  api:
+    build:
+      context: .
+    container_name: fast-api-template
+    ports:
+      - "8000:8000"
+    
   redis:
     image: redis:latest
     container_name: redis

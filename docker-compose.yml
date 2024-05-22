@@ -1,3 +1,4 @@
+#Change "fast-api-template" to your api name
 version: '3.8'
 
 services:
@@ -5,11 +6,40 @@ services:
     build:
       context: .
     container_name: fast-api-template
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql://root:changePassword@postgreesql:5432/template
+      - ORIGINS=http://127.0.0.1:3000
     ports:
       - "8000:8000"
+    networks:
+      - fast-api-template-network
     
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - "6379:6379"
+    networks:
+      - fast-api-template-network
+
+  postgreesql:
+    container_name: fast-api-template-database
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=template
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=changePassword
+    ports:
+      - "5432:5432"
+    networks:
+      - fast-api-template-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  fast-api-template-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

@@ -2,17 +2,6 @@
 version: '3.8'
 
 services:
-  api:
-    build:
-      context: .
-    container_name: fast-api-template
-    environment:
-      - SQLALCHEMY_DATABASE_URL=postgresql://root:changePassword@postgreesql:5432/template
-      - ORIGINS=http://127.0.0.1:3000
-    ports:
-      - "8000:8000"
-    networks:
-      - fast-api-template-network
     
   redis:
     image: redis:latest

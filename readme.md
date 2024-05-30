@@ -65,4 +65,3 @@ Now you're ready to start working with the project locally 😁.
 
 Use [SQLmodel](https://sqlmodel.tiangolo.com/) instead of sqlAlchemy
 Implement a random salt for each user
-Set PostgreeSQL database for default option instead of Sqlite

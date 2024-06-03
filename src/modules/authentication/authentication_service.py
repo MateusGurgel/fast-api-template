@@ -1,14 +1,14 @@
-from src.exceptions.http_base_exception.http_exception import HttpException
-from src.exceptions.invalid_token_exception import InvalidTokenException
-from src.exceptions.credential_exception import credentialsException
 from datetime import datetime, timedelta, timezone
-from src.utils.encryption import verify_password
-from src.modules.user import user_repository
-from sqlalchemy.orm import Session
-from jose import JWTError, jwt
 from typing import Union
-from decouple import config
 
+from decouple import config
+from jose import JWTError, jwt
+from sqlalchemy.orm import Session
+
+from src.exceptions.credential_exception import credentialsException
+from src.exceptions.invalid_token_exception import InvalidTokenException
+from src.modules.user.user_repository import user_repository
+from src.utils.encryption import verify_password
 
 ACCESS_TOKEN_EXPIRE_MINUTES = config("ACCESS_TOKEN_EXPIRE_MINUTES", cast=int)
 ACCESS_TOKEN_SECRET_KEY = config("ACCESS_TOKEN_SECRET_KEY")
@@ -16,7 +16,7 @@ ACCESS_TOKEN_ENCRYPTION_ALGORITHM = config("ACCESS_TOKEN_ENCRYPTION_ALGORITHM")
 
 
 def authenticate(username: str, password, db: Session) -> str:
-    
+
     if not check_credentials(username, password, db):
         raise credentialsException
 
@@ -34,7 +34,9 @@ def try_get_user_username_from_token(token: str) -> str:
 
 
 def get_user_username_from_token(token: str) -> str:
-    payload = jwt.decode(token, ACCESS_TOKEN_SECRET_KEY, algorithms=[ACCESS_TOKEN_ENCRYPTION_ALGORITHM])
+    payload = jwt.decode(
+        token, ACCESS_TOKEN_SECRET_KEY, algorithms=[ACCESS_TOKEN_ENCRYPTION_ALGORITHM]
+    )
     username = payload.get("sub")
 
     if not username:
@@ -51,7 +53,9 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
 
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, ACCESS_TOKEN_SECRET_KEY, algorithm=ACCESS_TOKEN_ENCRYPTION_ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_encode, ACCESS_TOKEN_SECRET_KEY, algorithm=ACCESS_TOKEN_ENCRYPTION_ALGORITHM
+    )
     return encoded_jwt
 
 

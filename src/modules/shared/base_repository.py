@@ -97,10 +97,7 @@ class BaseRepository:
         Returns:
             int: The number of records deleted.
         """
-        query = self.select({"id": id}, db).first()
-        deleted_rows = query.delete()
-        db.commit()
-        return deleted_rows
+        return self.delete({"id": id}, db)
 
     def delete(self, where: dict, db: Session) -> int:
             """

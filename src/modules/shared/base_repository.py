@@ -98,4 +98,9 @@ class BaseRepository:
                 int: The number of records deleted.
             """
 
-            return self.select(where, db).delete()
+            query = self.select(where, db)
+            deleted_rows = query.delete()
+            db.commit()
+            return deleted_rows
+    
+

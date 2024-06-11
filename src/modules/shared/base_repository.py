@@ -85,6 +85,22 @@ class BaseRepository:
             db.refresh(db_model)
 
         return db_models
+    
+    def delete_by_id(self, id: str, db: Session) -> int:
+        """
+        Deletes a record from the database based on the given ID.
+
+        Args:
+            id (str): The ID of the record to be deleted.
+            db (Session): The database session.
+
+        Returns:
+            int: The number of records deleted.
+        """
+        query = self.select({"id": id}, db).first()
+        deleted_rows = query.delete()
+        db.commit()
+        return deleted_rows
 
     def delete(self, where: dict, db: Session) -> int:
             """

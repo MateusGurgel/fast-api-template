@@ -12,11 +12,11 @@ def create_user(user: CreateUserSchema, db: Session) -> CreateUserSchema:
 
     return repository.create_user(user, db)
 
-def get_user_by_id(user_id: int, db: Session):
-    return repository.get_user_by_id(user_id, db)
+def search_by_id(user_id: int, db: Session):
+    return repository.search_by_id(user_id, db)
 
 def delete_user_by_id(user_id: int, db: Session):
-    return repository.delete_user_by_id(user_id, db)
+    return repository.delete_by_id(user_id, db)
 
-def get_user_by_username(username: str, db: Session):
-    return repository.get_user_by_username(username, db)
+def search_by_username(username: str, db: Session):
+    return repository.search_by_username(username, db)

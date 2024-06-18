@@ -60,7 +60,7 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
 
 
 def check_credentials(username: str, password, db: Session):
-    user = user_repository.get_user_by_username(username, db)
+    user = user_repository.search_by_username(username, db)
 
     if not user:
         return False

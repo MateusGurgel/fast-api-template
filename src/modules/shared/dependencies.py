@@ -16,7 +16,7 @@ async def get_current_user(
     token: Annotated[str, Depends(Oauth2)], db: Annotated[Session, Depends(get_db)]
 ) -> User:
     username = try_get_user_username_from_token(token)
-    user = user_repository.get_user_by_username(username, db)
+    user = user_repository.search_by_username(username, db)
     return user
 
 

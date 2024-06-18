@@ -12,21 +12,18 @@ class UserRepository(BaseRepository):
     def __init__(self):
         super().__init__(User)
 
-    def get_user_by_id(self, user_id: int, db: Session):
-        return self.select_first({"id": user_id}, db)
+    def search_by_id(self, id: str, db: Session):
+        pass
 
-    def delete_user_by_id(self, id: str, db: Session) -> int:
-        return self.delete_by_id(id, db)
+    def search_by_username(self, username: str, db: Session):
+        pass
 
-    def get_user_by_username(self, username: str, db: Session):
-        return self.select_first({"username": username}, db)
-
-    def get_user_by_email(self, email: str, db: Session):
-        return self.select_first({"email": email}, db)
+    def search_by_email(self, email: str, db: Session):
+        pass
     
     def does_email_exist(self, email: str, db: Session) -> bool:
         try:
-            self.get_user_by_email(email, db)
+            self.search_by_email(email, db)
             return True
         except ResourceNotFound:
             return False

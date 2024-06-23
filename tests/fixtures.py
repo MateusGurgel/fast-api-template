@@ -1,10 +1,13 @@
 import pytest
 from decouple import config
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from tests.utils.database_utils import migrate_to_db
 from tests.utils.docker_utils import start_test_database_container
+
+load_dotenv()
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -18,7 +21,7 @@ def db_session():
 
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-    yield SessionLocal
+    yield SessionLocal()
 
     engine.dispose()
     container.stop()

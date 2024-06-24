@@ -12,7 +12,7 @@ from src.databases.main.database import BaseModel
 alembic_config = context.config
 
 load_dotenv()
-alembic_config.set_section_option("database", "sqlalchemy.url", config("DATABASE_URL"))
+alembic_config.set_section_option("alembic", "sqlalchemy.url", config("DATABASE_URL"))
 alembic_config.set_section_option(
     "test-database", "sqlalchemy.url", config("TEST_DATABASE_URL")
 )

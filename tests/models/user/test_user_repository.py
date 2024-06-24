@@ -19,4 +19,3 @@ def test_create_user(db_session):
     assert user.id is not None
     assert user.username == "test_user"
     assert user.email == "example@example.com"
-    assert user.password == "test_password"

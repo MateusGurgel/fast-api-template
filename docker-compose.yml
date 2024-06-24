@@ -11,6 +11,14 @@ services:
     networks:
       - fast-api-template-network
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - fast-api-template-network
+
   postgreesql:
     container_name: fast-api-template-database
     image: postgres:latest

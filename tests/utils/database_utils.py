@@ -36,8 +36,6 @@ def delete_data(session: Session):
     meta = MetaData()
     meta.reflect(bind=session.bind)
 
-    print(meta.sorted_tables)
-
     for table in reversed(meta.sorted_tables):
         session.execute(table.delete())
 

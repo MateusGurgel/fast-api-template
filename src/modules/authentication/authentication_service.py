@@ -16,7 +16,6 @@ ACCESS_TOKEN_ENCRYPTION_ALGORITHM = config("ACCESS_TOKEN_ENCRYPTION_ALGORITHM")
 
 
 def authenticate(username: str, password, db: Session) -> str:
-
     if not check_credentials(username, password, db):
         raise credentialsException
 

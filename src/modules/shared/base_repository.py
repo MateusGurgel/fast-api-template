@@ -10,7 +10,6 @@ from src.exceptions.resource_not_found import ResourceNotFound
 
 
 class BaseRepository:
-    
     def __init__(self, base_model: DeclarativeMeta):
         self.base_model = base_model
         self.__search_function_prefix = "search_by_"
@@ -126,7 +125,6 @@ class BaseRepository:
         function_names = self.__get_class_function_names()
 
         for function_name in function_names:
-
             if not self.__is_search_function_name(function_name):
                 continue
 

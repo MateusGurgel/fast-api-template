@@ -6,6 +6,7 @@ class CreateUserSchema(BaseModel):
     password: str
     email: EmailStr
 
+
 class UserListSchema(BaseModel):
     username: str
     email: EmailStr

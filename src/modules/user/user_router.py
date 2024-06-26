@@ -12,9 +12,11 @@ async def create_user(user: CreateUserSchema, db: database):
     user = user_service.create_user(user, db)
     return user
 
+
 @user_router.get("/me", summary="Get current user")
 async def get_current_user(user: current_user) -> UserListSchema:
     return user
+
 
 @user_router.delete("/me", summary="Delete current user")
 async def delete_current_user(user: current_user, db: database):

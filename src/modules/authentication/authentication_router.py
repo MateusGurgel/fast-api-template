@@ -8,10 +8,14 @@ from src.modules.authentication.token_schema import Token
 
 auth_router = APIRouter()
 
+
 @auth_router.post("/Bearer", summary="Login")
-async def get_bearer(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: database):
+async def get_bearer(
+    form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: database
+):
     token = authentication_service.authenticate(
-        form_data.username, form_data.password, db)
+        form_data.username, form_data.password, db
+    )
     return Token(access_token=token, token_type="bearer")
 
 

@@ -20,17 +20,18 @@ class UserRepository(BaseRepository):
 
     def search_by_email(self, email: str, db: Session):
         pass
-    
+
     def does_email_exist(self, email: str, db: Session) -> bool:
         try:
             self.search_by_email(email, db)
             return True
         except ResourceNotFound:
             return False
-    
+
     def create_user(self, user: CreateUserSchema, db: Session) -> CreateUserSchema:
         hashedPassword = get_password_hash(user.password)
         user.password = hashedPassword
         return self.insert(user, db)
-    
+
+
 user_repository = UserRepository()

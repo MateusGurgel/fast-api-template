@@ -63,5 +63,5 @@ Now you're ready to start working with the project locally 😁.
 
 ## TODO
 
-Use [SQLmodel](https://sqlmodel.tiangolo.com/) instead of sqlAlchemy
-Implement a random salt for each user
+Make the query builder affect only search_functions with a @tag on it
+Implement Logging on the aplication

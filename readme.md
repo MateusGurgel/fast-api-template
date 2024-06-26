@@ -64,4 +64,9 @@ Now you're ready to start working with the project locally 😁.
 ## TODO
 
 Make the query builder affect only search_functions with a @tag on it
+
+Use another lib for hashing
+
+Use random salts for every user
+
 Implement Logging on the aplication

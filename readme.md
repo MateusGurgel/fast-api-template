@@ -64,9 +64,13 @@ Now you're ready to start working with the project locally 😁.
 ## TODO
 
 
-4 - Make the query builder affect only search_functions with a @tag on it
+5 - Make the query builder affect only search_functions with a @tag on it
 
-4.1 - Make select_first and select with offset and limit tags
+5.1 - Make select_first and select with offset and limit tags
+
+4 - Make a redis testing container
+
+4.1 - test rate limit
 
 3 - Implement Logging on the aplication
 

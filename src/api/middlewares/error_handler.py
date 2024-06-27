@@ -1,6 +1,6 @@
 from fastapi import Request
-from src.exceptions.http_base_exception.http_exception import HttpException
-from src.exceptions.http_base_exception.http_exception_handler import (
+from src.api.exceptions.http_base_exception.http_exception import HttpException
+from src.api.exceptions.http_base_exception.http_exception_handler import (
     http_exception_handler,
 )
 

@@ -5,10 +5,10 @@ from decouple import config
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
-from src.exceptions.credential_exception import credentialsException
-from src.exceptions.invalid_token_exception import InvalidTokenException
-from src.modules.user.user_repository import user_repository
-from src.utils.encryption import verify_password
+from src.api.exceptions.credential_exception import credentialsException
+from src.api.exceptions.invalid_token_exception import InvalidTokenException
+from src.api.modules.user.user_repository import user_repository
+from src.api.utils.encryption import verify_password
 
 ACCESS_TOKEN_EXPIRE_MINUTES = config("ACCESS_TOKEN_EXPIRE_MINUTES", cast=int)
 ACCESS_TOKEN_SECRET_KEY = config("ACCESS_TOKEN_SECRET_KEY")

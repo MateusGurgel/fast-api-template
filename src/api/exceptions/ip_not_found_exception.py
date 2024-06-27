@@ -1,4 +1,4 @@
-from src.exceptions.http_base_exception.http_exception import HttpException
+from src.api.exceptions.http_base_exception.http_exception import HttpException
 
 
 class IPNotFound(HttpException):

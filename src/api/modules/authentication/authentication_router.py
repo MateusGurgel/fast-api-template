@@ -1,9 +1,9 @@
 from typing_extensions import Annotated
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
-from src.modules.shared.dependencies import current_user, database
-from src.modules.authentication import authentication_service
-from src.modules.authentication.token_schema import Token
+from src.api.modules.shared.dependencies import current_user, database
+from src.api.modules.authentication import authentication_service
+from src.api.modules.authentication.token_schema import Token
 
 
 auth_router = APIRouter()

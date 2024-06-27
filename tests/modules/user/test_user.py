@@ -1,8 +1,8 @@
 import pytest
 
-from src.exceptions.resource_not_found import ResourceNotFound
-from src.modules.user.user_repository import UserRepository
-from src.modules.user.user_schemas import CreateUserSchema
+from src.api.exceptions.resource_not_found import ResourceNotFound
+from src.api.modules.user.user_repository import UserRepository
+from src.api.modules.user.user_schemas import CreateUserSchema
 
 
 def get_mock_user():

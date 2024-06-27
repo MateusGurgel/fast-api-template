@@ -6,7 +6,7 @@ from pydantic import BaseModel as PydanticBaseModel
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm import Session
 
-from src.exceptions.resource_not_found import ResourceNotFound
+from src.api.exceptions.resource_not_found import ResourceNotFound
 
 
 class BaseRepository:

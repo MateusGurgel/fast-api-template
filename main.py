@@ -1,13 +1,13 @@
 from decouple import config, Csv
 import uvicorn
 from fastapi import FastAPI
-from src.middlewares.error_handler import error_handler_middleware
-from src.exceptions.http_base_exception.http_exception import HttpException
-from src.exceptions.http_base_exception.http_exception_handler import http_exception_handler
-from src.modules.user.user_router import user_router
-from src.modules.authentication.authentication_router import auth_router
+from src.api.middlewares.error_handler import error_handler_middleware
+from src.api.exceptions.http_base_exception.http_exception import HttpException
+from src.api.exceptions.http_base_exception.http_exception_handler import http_exception_handler
+from src.api.modules.user.user_router import user_router
+from src.api.modules.authentication.authentication_router import auth_router
 from fastapi.middleware.cors import CORSMiddleware
-from src.middlewares.rate_limiter import rate_limiter_middleware
+from src.api.middlewares.rate_limiter import rate_limiter_middleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 description = """

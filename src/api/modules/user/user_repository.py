@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
 
-from src.modules.shared.base_repository import BaseRepository
-from src.modules.user.user import User
-from src.modules.user.user_schemas import CreateUserSchema
-from src.utils.encryption import get_password_hash
+from src.api.modules.shared.base_repository import BaseRepository
+from src.api.modules.user.user import User
+from src.api.modules.user.user_schemas import CreateUserSchema
+from src.api.utils.encryption import get_password_hash
 
-from src.exceptions.resource_not_found import ResourceNotFound
+from src.api.exceptions.resource_not_found import ResourceNotFound
 
 
 class UserRepository(BaseRepository):

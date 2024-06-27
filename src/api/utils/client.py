@@ -1,4 +1,4 @@
-from src.exceptions.ip_not_found_exception import IPNotFound
+from src.api.exceptions.ip_not_found_exception import IPNotFound
 
 
 def get_client_ip(request):

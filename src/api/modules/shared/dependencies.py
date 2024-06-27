@@ -3,9 +3,9 @@ from typing_extensions import Annotated
 from sqlalchemy.orm import Session
 
 from src.databases.main.database import get_db
-from src.modules.user.user import User
-from src.modules.user.user_repository import user_repository
-from src.modules.authentication.authentication_service import (
+from src.api.modules.user.user import User
+from src.api.modules.user.user_repository import user_repository
+from src.api.modules.authentication.authentication_service import (
     try_get_user_username_from_token,
 )
 

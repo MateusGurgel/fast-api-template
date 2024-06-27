@@ -63,9 +63,13 @@ Now you're ready to start working with the project locally 😁.
 
 ## TODO
 
+0 - set 201 as a response on creation routes
+
 1 - Use another lib for hashing
 
 2 - Make the query builder affect only search_functions with a @tag on it
+
+2.1 - Make select_first and select with offset and limit tags
 
 3 - Implement Logging on the aplication
 

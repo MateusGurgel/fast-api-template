@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 
 from main import app
-from src.tests.utils.database_utils import (
+from src.databases.test.database import (
     create_database_engine,
     delete_data,
     get_database_session_maker,

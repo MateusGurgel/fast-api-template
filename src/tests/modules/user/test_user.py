@@ -2,11 +2,13 @@ import pytest
 
 from src.api.exceptions.resource_not_found import ResourceNotFound
 from src.api.modules.user.user_repository import UserRepository
-from src.api.modules.user.user_schemas import CreateUserSchema
+from src.api.modules.user.user_schemas import UserCreateSchema
+from src.api.modules.user.user_service import create_user
+from src.api.utils.encryption import verify_password
 
 
 def get_mock_user():
-    return CreateUserSchema(
+    return UserCreateSchema(
         **{
             "username": "test_user",
             "password": "test_password",
@@ -16,9 +18,7 @@ def get_mock_user():
 
 
 def create_mock_user(db_session, user=get_mock_user()):
-    user_repository = UserRepository()
-
-    persisted_user = user_repository.create_user(user, db_session)
+    persisted_user = create_user(user, db_session)
 
     return persisted_user
 
@@ -79,3 +79,4 @@ def test_create_user(client, db_session):
     assert persisted_user is not None
     assert persisted_user.username == user.username
     assert persisted_user.email == user.email
+    assert verify_password(user.password, persisted_user.password)

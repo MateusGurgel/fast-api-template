@@ -1,4 +1,4 @@
-from tests.fixtures import (
+from src.tests.fixtures import (
     client,  # noqa: F401
     db_container,  # noqa: F401
     db_session,  # noqa: F401

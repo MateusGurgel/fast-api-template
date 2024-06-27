@@ -72,7 +72,7 @@ def test_create_user(client, db_session):
 
     response = client.post("/users", json=user.model_dump())
 
-    assert response.status_code == 200
+    assert response.status_code == 201
 
     persisted_user = user_repository.search_by_id(response.json()["id"], db_session)
 

@@ -7,7 +7,7 @@ from src.api.modules.user.user_schemas import CreateUserSchema, UserListSchema
 user_router = APIRouter(prefix=("/users"), tags=["user"])
 
 
-@user_router.post("/", summary="Create a new user")
+@user_router.post("/", summary="Create a new user", status_code=201)
 async def create_user(user: CreateUserSchema, db: database):
     user = user_service.create_user(user, db)
     return user

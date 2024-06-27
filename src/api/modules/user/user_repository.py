@@ -11,13 +11,13 @@ class UserRepository(BaseRepository):
         super().__init__(User)
 
     def search_by_id(self, id: str, db: Session):
-        pass
+        return self.select_first({"id": id}, db)
 
     def search_by_username(self, username: str, db: Session):
-        pass
+        return self.select_first({"username": username}, db)
 
     def search_by_email(self, email: str, db: Session):
-        pass
+        return self.select_first({"email": email}, db)
 
     def does_email_exist(self, email: str, db: Session) -> bool:
         try:

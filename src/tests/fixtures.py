@@ -1,4 +1,7 @@
+import os
+
 import pytest
+from decouple import config
 from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 
@@ -9,14 +12,29 @@ from src.databases.test.database import (
     get_database_session_maker,
     override_api_database,
 )
-from src.tests.utils.docker_utils import start_test_database_container
+from src.tests.utils.docker.postgres_test_container import postgree_test_container
+from src.tests.utils.docker.redis_test_container import redis_test_container
 
 load_dotenv()
 
 
 @pytest.fixture(scope="session", autouse=True)
+def redis_container():
+    container = redis_test_container.start()
+
+    last_redis_port = config("REDIS_PORT")
+    os.environ["REDIS_PORT"] = "6380"
+
+    yield container
+
+    os.environ["REDIS_PORT"] = last_redis_port
+
+    container.stop()
+
+
+@pytest.fixture(scope="session", autouse=True)
 def db_container():
-    container = start_test_database_container()
+    container = postgree_test_container.start()
 
     yield container
 

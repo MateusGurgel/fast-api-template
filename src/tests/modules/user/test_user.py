@@ -1,10 +1,10 @@
 import pytest
 
-from src.api.exceptions.resource_not_found import ResourceNotFound
+from src.api.core.exceptions.resource_not_found import ResourceNotFound
 from src.api.modules.user.user_repository import UserRepository
 from src.api.modules.user.user_schemas import UserCreateSchema
 from src.api.modules.user.user_service import create_user
-from src.api.utils.encryption import verify_password
+from src.api.core.utils.encryption import verify_password
 
 
 def get_mock_user():

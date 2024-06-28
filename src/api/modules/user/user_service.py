@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
-from src.api.exceptions.email_already_used_exception import EmailAlreadyUsedException
+from src.api.core.exceptions.email_already_used_exception import EmailAlreadyUsedException
 from src.api.modules.user.user_repository import user_repository as repository
 from src.api.modules.user.user_schemas import UserCreateSchema
-from src.api.utils.encryption import get_password_hash
+from src.api.core.utils.encryption import get_password_hash
 
 
 def create_user(user: UserCreateSchema, db: Session) -> UserCreateSchema:

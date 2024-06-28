@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 
 from src.api.exceptions.credential_exception import credentialsException
 from src.api.exceptions.invalid_token_exception import InvalidTokenException
+from src.api.exceptions.resource_not_found import ResourceNotFound
 from src.api.modules.user.user_repository import user_repository
 from src.api.utils.encryption import verify_password
 
@@ -59,9 +60,9 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
 
 
 def check_credentials(username: str, password, db: Session):
-    user = user_repository.search_by_username(username, db)
 
-    if not user:
+    try:
+        user = user_repository.search_by_username(username, db)
+        return verify_password(password, user.password)
+    except ResourceNotFound:
         return False
-
-    return verify_password(password, user.password)

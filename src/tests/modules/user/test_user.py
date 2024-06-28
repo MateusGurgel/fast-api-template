@@ -40,6 +40,14 @@ def test_user_login(client, db_session):
     assert response.json()["token_type"] == "bearer"
 
 
+def test_invalid_login(client):
+    response = client.post(
+        "/Bearer",
+        data={"username": "invalid_user", "password": "invalid_password"},
+    )
+    assert response.status_code == 401
+
+
 def test_self_delete(client, db_session):
     userRepository = UserRepository()
 

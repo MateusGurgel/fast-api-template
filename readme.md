@@ -63,8 +63,6 @@ Now you're ready to start working with the project locally 😁.
 
 ## TODO
 
-3.1 - test rate limit
-
 2 - Implement Logging on the aplication
 
 1 - Api versioning

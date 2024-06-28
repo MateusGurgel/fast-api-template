@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 
 from main import app
+from src.databases.redis.redis_client import redis_client
 from src.databases.test.database import (
     create_database_engine,
     delete_data,
@@ -14,7 +15,6 @@ from src.databases.test.database import (
 )
 from src.tests.utils.docker.postgres_test_container import postgree_test_container
 from src.tests.utils.docker.redis_test_container import redis_test_container
-from src.databases.redis.redis_client import redis_client
 
 load_dotenv()
 
@@ -41,10 +41,11 @@ def db_container():
 
     container.stop()
 
+
 @pytest.fixture(autouse=True)
 def reset_redis(redis_container):
-    print("Teste")
     redis_client.flushdb()
+
 
 @pytest.fixture()
 def client():

@@ -5,4 +5,5 @@ from src.tests.fixtures import (
     db_session_maker,  # noqa: F401
     override_api_database_fixture,  # noqa: F401
     redis_container,  # noqa: F401
+    reset_redis,  # noqa: F401
 )

@@ -63,12 +63,8 @@ Now you're ready to start working with the project locally 😁.
 
 ## TODO
 
-4 - Make a redis testing container
+3.1 - test rate limit
 
-4.1 - test rate limit
-
-3 - Implement Logging on the aplication
-
-2 - Use random salts for every user
+2 - Implement Logging on the aplication
 
 1 - Api versioning

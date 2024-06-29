@@ -5,9 +5,10 @@ import time
 from decouple import config
 from fastapi import Request
 
-from src.databases.redis.redis_client import redis_client
 from src.api.core.exceptions.too_many_requests_exception import TooManyRequestsException
+from src.api.core.logging import logger
 from src.api.core.utils.client import get_client_ip
+from src.databases.redis.redis_client import redis_client
 
 RATE_LIMIT_REQUESTS_PER_RESET_TIME = config(
     "RATE_LIMIT_REQUESTS_PER_RESET_TIME", cast=int
@@ -33,6 +34,11 @@ async def rate_limiter_middleware(request: Request, call_next):
     requests_count = int(requests_count)
 
     if requests_count >= RATE_LIMIT_REQUESTS_PER_RESET_TIME:
+
+        logger.info(
+            f"Client with IP {client_ip} reached the limit of {RATE_LIMIT_REQUESTS_PER_RESET_TIME} requests per {RATE_LIMIT_RESET_TIME_IN_SECONDS} seconds"
+        )
+
         raise TooManyRequestsException
 
     redis_client.set(requests_per_client_key, requests_count + 1)

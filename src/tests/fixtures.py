@@ -1,7 +1,4 @@
-import os
-
 import pytest
-from decouple import config
 from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 
@@ -23,12 +20,9 @@ load_dotenv()
 def redis_container():
     container = redis_test_container.start()
 
-    last_redis_port = config("REDIS_PORT")
-    os.environ["REDIS_PORT"] = "6380"
+    redis_client.set_client(port=6380)
 
     yield container
-
-    os.environ["REDIS_PORT"] = last_redis_port
 
     container.stop()
 

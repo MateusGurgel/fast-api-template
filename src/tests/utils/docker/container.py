@@ -42,7 +42,7 @@ class Container:
         return container.status == "running"
 
     def wait_for_stable_status(
-        self, container: DockerClient, stable_duration=3, interval=1
+        self, container: DockerClient, stable_duration=4, interval=1
     ):
         start_time = time.time()
         stable_count = 0

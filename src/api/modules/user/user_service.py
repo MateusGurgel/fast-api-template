@@ -1,12 +1,17 @@
 from sqlalchemy.orm import Session
 
-from src.api.core.exceptions.email_already_used_exception import EmailAlreadyUsedException
+from src.api.core.exceptions.email_already_used_exception import (
+    EmailAlreadyUsedException,
+)
+from src.api.core.logging import logger
+from src.api.core.utils.encryption import get_password_hash
 from src.api.modules.user.user_repository import user_repository as repository
 from src.api.modules.user.user_schemas import UserCreateSchema
-from src.api.core.utils.encryption import get_password_hash
 
 
 def create_user(user: UserCreateSchema, db: Session) -> UserCreateSchema:
+
+    logger.info(f"Creating user with email: {user.email}")
 
     if repository.does_email_exist(user.email, db):
         raise EmailAlreadyUsedException()

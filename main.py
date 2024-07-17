@@ -9,7 +9,6 @@ from src.api.core.exceptions.http_base_exception.http_exception_handler import (
     http_exception_handler,
 )
 from src.api.core.middlewares.error_handler import error_handler_middleware
-from src.api.core.middlewares.rate_limiter import rate_limiter_middleware
 from src.api.modules.authentication.authentication_router import auth_router
 from src.api.modules.user.user_router import user_router
 
@@ -40,7 +39,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_middleware(BaseHTTPMiddleware, dispatch=rate_limiter_middleware)
 app.add_middleware(BaseHTTPMiddleware, dispatch=error_handler_middleware)
 
 

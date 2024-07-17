@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from src.api.core.exceptions.resource_not_found import ResourceNotFound
-from src.api.modules.shared.base_repository import BaseRepository
+from src.api.core.base_repository import BaseRepository
 from src.api.modules.user.user import User
 from src.api.modules.user.user_schemas import UserCreateSchema
 

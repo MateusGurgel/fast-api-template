@@ -5,6 +5,7 @@ from src.api.core.exceptions.email_already_used_exception import (
 )
 from src.api.core.logging import logger
 from src.api.core.utils.encryption import get_password_hash
+from src.api.modules.user.user import User
 from src.api.modules.user.user_repository import user_repository as repository
 from src.api.modules.user.user_schemas import UserCreateSchema
 
@@ -17,6 +18,8 @@ def create_user(user: UserCreateSchema, db: Session) -> UserCreateSchema:
         raise EmailAlreadyUsedException()
 
     user.password = get_password_hash(user.password)
+
+    user = User(**user.model_dump())
 
     return repository.create_user(user, db)
 

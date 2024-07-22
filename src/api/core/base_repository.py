@@ -1,6 +1,5 @@
 from typing import List
 
-from pydantic import BaseModel as PydanticBaseModel
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm import Session
 
@@ -43,49 +42,42 @@ class BaseRepository:
 
         return query
 
-    def insert(self, pydantc_model: PydanticBaseModel, db: Session):
+    def create(self, model: DeclarativeMeta, db: Session):
         """
         Inserts a new record into the database.
 
         Args:
-            pydantc_model (PydanticBaseModel): The Pydantic model representing the data to be inserted.
+            pydantc_model (DeclarativeMeta): The Pydantic model representing the data to be inserted.
             db (Session): The database session.
 
         Returns:
             The inserted database model.
         """
 
-        db_model = self.base_model(**pydantc_model.model_dump())
-        db.add(db_model)
+        db.add(model)
         db.commit()
-        db.refresh(db_model)
-        return db_model
+        db.refresh(model)
+        return model
 
-    def insert_many(self, pydantc_models: List[PydanticBaseModel], db: Session):
+    def create_many(self, models: List[DeclarativeMeta], db: Session):
         """
         Inserts multiple Pydantic models into the database.
 
         Args:
-            pydantc_models (List[PydanticBaseModel]): A list of Pydantic models to be inserted.
+            models (List[DeclarativeMeta]): A list of models to be inserted.
             db (Session): The database session.
 
         Returns:
             List[BaseModel]: A list of the inserted database models.
         """
 
-        db_models = []
-
-        for pydantic_model in pydantc_models:
-            db_model = self.base_model(**pydantic_model.model_dump())
-            db_models.append(db_model)
-
-        db.add_all(db_models)
+        db.add_all(models)
         db.commit()
 
-        for db_model in db_models:
-            db.refresh(db_model)
+        for model in models:
+            db.refresh(model)
 
-        return db_models
+        return models
 
     def delete_by_id(self, id: str, db: Session) -> int:
         """

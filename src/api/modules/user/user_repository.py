@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from src.api.core.exceptions.resource_not_found import ResourceNotFound
 from src.api.core.base_repository import BaseRepository
+from src.api.core.exceptions.resource_not_found import ResourceNotFound
 from src.api.modules.user.user import User
 from src.api.modules.user.user_schemas import UserCreateSchema
 
@@ -27,7 +27,7 @@ class UserRepository(BaseRepository):
             return False
 
     def create_user(self, user: UserCreateSchema, db: Session) -> UserCreateSchema:
-        return self.insert(user, db)
+        return self.create(user, db)
 
 
 user_repository = UserRepository()

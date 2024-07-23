@@ -1,11 +1,4 @@
 {
-    "python.autoComplete.extraPaths": [
-        "${workspaceFolder}/src"
-    ],
-    "python.analysis.extraPaths": [
-        "${workspaceFolder}/src"
-    ]
-
     "[python]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
@@ -14,6 +7,6 @@
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
 
-    "editor. rulers": [88]
+    "editor.rulers": [88]
     }
 }

@@ -1,3 +1,7 @@
+# FAST API TEMPLATE
+
+**This is my personal fast api template! feel free to use it the way**
+
 ## Running locally
 
 ### Clone the project
